@@ -17,37 +17,68 @@
 # The game should have a way to restart the game.
 
 # The game should have a way to exit the game.
+import sys
+
+from player import Player
 
 class Game:
-    def __init__(self):
+    def __init__(self, players, moves):
         """Initializes the game,
         It should give the game a list of at least 4 characters to choose from
-        It should also give the game a list of moves for each character
+        It should also give the game a list of m oves for each character
         It should show player a list of characters to choose from
         and allow them to select a character,
         then have the computer choose a character at random
         It should randomly select a player to go first"""
-        pass
+        self.players = [ "Knight", "Orc", "Mage", "Thief"]
+        self.moves = { "FireBall": 50, "Slap": 25 }
+        self.current_turn = 0
+        self.player = None
+        self.computer = None
+        self.turn = 0
+        self.winner = None
+
 
     def turn(self, current_turn):
-        """This method should show the current health of both players, 
+        """ ayers, 
         and allow the player to select a move to use on the opponent
         If it is the computer player's turn, it should select a move at random"""
-        pass
+        return self.current_turn
+        
 
     def check_winner(self):
         """This method should check if either player's health has reached 0
         If a player's health has reached 0, it should display the winner"""
-        pass
+        if self.player <= 0:
+            print("Computer wins")
+        elif self.computer <= 0:
+            print("Player wins")
+        else:
+            print("It's a tie")
 
     def restart(self):
         """This method should allow the player to restart the game"""
-        pass
+        if self.player <= 0 or self.computer <= 0:
+            self.player = 100
+            self.computer = 100
+            self.turn = 0
+            self.winner = None
+            print("Game has been restarted")
+        else:
+            print("Game is still ongoing")
+
+        
 
     def exit(self):
         """This method should allow the player to exit the game"""
-        pass
+        sys.exit()
 
     
 def main():
-    pass
+    game = Game()
+    game.turn(1)
+    game.check_winner()
+    game.turn(2)
+    game.check_winner() 
+
+main()
